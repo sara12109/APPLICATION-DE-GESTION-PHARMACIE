@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHARMA STOCK - Gestion de Pharmacie</title>
     
-    <!-- Firebase SDK (version compat) -->
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     
     <script>
-        // TA NOUVELLE CONFIGURATION FIREBASE
+        // Configuration Firebase CORRECTE
         const firebaseConfig = {
             apiKey: "AIzaSyAjsdsnH2qdd1tYwW0sU_ibdszwae2Ra0w",
             authDomain: "pharma-stock-7363d.firebaseapp.com",
@@ -28,7 +28,6 @@
     </script>
     
     <style>
-        /* === TOUT TON STYLE CSS RESTE ICI (le même que tu avais) === */
         * {
             margin: 0;
             padding: 0;
@@ -43,6 +42,7 @@
             position: relative;
         }
         
+        /* Footer */
         .footer {
             position: fixed;
             bottom: 0;
@@ -62,6 +62,7 @@
             color: #27ae60;
         }
         
+        /* Page de connexion */
         .login-page {
             display: flex;
             justify-content: center;
@@ -184,6 +185,14 @@
             color: white;
         }
         
+        .btn-reset {
+            background: #e67e22;
+            color: white;
+            margin-bottom: 20px;
+            width: auto;
+            padding: 12px 25px;
+        }
+        
         .security-links {
             display: flex;
             justify-content: space-between;
@@ -214,6 +223,7 @@
             font-weight: 500;
         }
         
+        /* Application principale */
         .app-container {
             display: none;
             background: #f5f6fa;
@@ -316,6 +326,7 @@
             font-weight: 600;
         }
         
+        /* Statistiques */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -350,6 +361,7 @@
             color: #2c3e50;
         }
         
+        /* Bouton remise à zéro */
         .reset-section {
             background: white;
             padding: 20px;
@@ -361,6 +373,11 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
+        .reset-section p {
+            color: #7f8c8d;
+        }
+        
+        /* Produits - Grille */
         .produits-container {
             background: white;
             padding: 25px;
@@ -462,6 +479,7 @@
             background: #c0392b;
         }
         
+        /* Ventes - Organisation séparée */
         .ventes-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -473,6 +491,12 @@
             padding: 25px;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .recherche-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 18px;
         }
         
         .search-box {
@@ -512,7 +536,16 @@
             background: #e8f8f5;
         }
         
-        .produit-prix {
+        .produit-item:last-child {
+            border-bottom: none;
+        }
+        
+        .produit-item .produit-info h4 {
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+        
+        .produit-item .produit-prix {
             font-weight: bold;
             color: #27ae60;
             font-size: 18px;
@@ -523,6 +556,12 @@
             padding: 25px;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .panier-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 18px;
         }
         
         .panier-items {
@@ -539,6 +578,15 @@
             align-items: center;
             padding: 15px;
             border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .panier-item:last-child {
+            border-bottom: none;
+        }
+        
+        .panier-item-info h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
         }
         
         .panier-item-actions {
@@ -596,6 +644,7 @@
             gap: 15px;
         }
         
+        /* Historique */
         .historique-container {
             background: white;
             border-radius: 15px;
@@ -631,6 +680,7 @@
             cursor: pointer;
         }
         
+        /* Modals */
         .modal {
             display: none;
             position: fixed;
@@ -664,6 +714,7 @@
             margin-top: 30px;
         }
         
+        /* Alertes */
         .alertes-section {
             background: white;
             padding: 25px;
@@ -680,6 +731,12 @@
             border-radius: 8px;
         }
         
+        .alerte-item.danger {
+            background: #fdedec;
+            border-left-color: #e74c3c;
+        }
+        
+        /* Reçu */
         .recu-container {
             background: white;
             padding: 30px;
@@ -697,6 +754,12 @@
             width: 60px;
             height: 60px;
             fill: #27ae60;
+            margin-bottom: 10px;
+        }
+        
+        .recu-header h3 {
+            color: #27ae60;
+            font-size: 24px;
         }
         
         .recu-infos {
@@ -704,6 +767,15 @@
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 20px;
+        }
+        
+        .recu-infos p {
+            margin: 5px 0;
+            color: #2c3e50;
+        }
+        
+        .recu-details {
+            margin: 20px 0;
         }
         
         .recu-item {
@@ -730,6 +802,16 @@
             background: #e8f8f5;
             border-radius: 8px;
             color: #27ae60;
+            font-style: italic;
+        }
+        
+        .recu-footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ecf0f1;
+            color: #7f8c8d;
+            font-size: 12px;
         }
         
         .btn-print {
@@ -739,21 +821,34 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
+            font-weight: 600;
             margin-top: 20px;
             width: 100%;
+        }
+        
+        .btn-print:hover {
+            background: #2980b9;
         }
         
         @media (max-width: 768px) {
             .ventes-container {
                 grid-template-columns: 1fr;
             }
+            
             .produits-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .reset-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Footer avec vos informations -->
     <div class="footer">
         Développé par <strong>ADAMOU SARA ABDOURAHAMANE</strong> | 📞 88902505
     </div>
@@ -788,7 +883,7 @@
                 <div id="loginError" class="error-message"></div>
             </div>
             
-            <!-- Création de compte -->
+            <!-- Création du premier compte admin -->
             <div id="firstConnectionForm" style="display: none;">
                 <h3 style="color: #27ae60; margin-bottom: 20px;">Créer un compte</h3>
                 
@@ -845,6 +940,7 @@
             <div id="dashboard" class="section active">
                 <h2>Tableau de bord</h2>
                 
+                <!-- Bouton de remise à zéro -->
                 <div class="reset-section">
                     <p>⚠️ Pour mettre en vente, vous devez d'abord créer vos produits.</p>
                     <button class="btn btn-warning" onclick="resetAllData()">🗑️ Remettre à zéro</button>
@@ -887,7 +983,9 @@
                         </button>
                     </div>
                     
-                    <div class="produits-grid" id="produitsGrid"></div>
+                    <div class="produits-grid" id="produitsGrid">
+                        <!-- Les produits s'affichent ici -->
+                    </div>
                 </div>
             </div>
 
@@ -896,12 +994,14 @@
                 <h2>Ventes</h2>
                 
                 <div class="ventes-container">
+                    <!-- Section Recherche -->
                     <div class="recherche-section">
                         <h3>Rechercher un produit</h3>
                         <input type="text" id="searchProduit" class="search-box" placeholder="Tapez le nom du produit...">
                         <div id="produitsListe" class="produits-liste"></div>
                     </div>
                     
+                    <!-- Section Panier -->
                     <div class="panier-section">
                         <h3>Panier <span id="panierCount">(0)</span></h3>
                         <div id="panierItems" class="panier-items"></div>
@@ -942,27 +1042,34 @@
     <div id="productModal" class="modal">
         <div class="modal-content">
             <h3 id="modalTitle">Ajouter un produit</h3>
+            
             <input type="hidden" id="productId">
+            
             <div class="form-group">
                 <label>Nom du produit</label>
                 <input type="text" id="productNom" placeholder="Ex: Paracétamol 500mg">
             </div>
+            
             <div class="form-group">
                 <label>Prix (FCFA)</label>
                 <input type="number" id="productPrix" placeholder="Ex: 1500">
             </div>
+            
             <div class="form-group">
                 <label>Stock initial</label>
                 <input type="number" id="productStock" placeholder="Ex: 100">
             </div>
+            
             <div class="form-group">
                 <label>Date de péremption</label>
                 <input type="date" id="productPeremption">
             </div>
+            
             <div class="form-group">
                 <label>Seuil d'alerte</label>
                 <input type="number" id="productSeuil" value="5" placeholder="Ex: 5">
             </div>
+            
             <div class="modal-actions">
                 <button class="btn btn-primary" onclick="saveProduct()">Enregistrer</button>
                 <button class="btn btn-secondary" onclick="closeModal()">Annuler</button>
@@ -974,13 +1081,15 @@
     <div id="confirmVenteModal" class="modal">
         <div class="modal-content">
             <h3>Confirmer la vente</h3>
+            
             <div style="margin: 25px 0; padding: 20px; background: #f8f9fa; border-radius: 10px;">
                 <div id="confirmDetails"></div>
-                <hr>
+                <hr style="margin: 15px 0;">
                 <p style="font-size: 20px; font-weight: bold; text-align: right; color: #27ae60;">
                     Total: <span id="confirmTotal">0</span> FCFA
                 </p>
             </div>
+            
             <div class="modal-actions">
                 <button class="btn btn-primary" onclick="finaliserVente()">Confirmer</button>
                 <button class="btn btn-secondary" onclick="closeConfirmModal()">Annuler</button>
@@ -1046,6 +1155,7 @@
             localStorage.setItem('ventes', JSON.stringify(ventes));
         }
 
+        // ========== REMISE À ZÉRO ==========
         function resetAllData() {
             if (confirm('⚠️ Supprimer toutes les données ?')) {
                 produits = [];
@@ -1061,7 +1171,7 @@
             }
         }
 
-        // ========== CONNEXION ==========
+        // ========== GESTION DE LA CONNEXION ==========
         function showFirstConnection() {
             document.getElementById('loginForm').style.display = 'none';
             document.getElementById('firstConnectionForm').style.display = 'block';
@@ -1206,7 +1316,7 @@
             if (section === 'historique') updateHistorique();
         }
 
-        // ========== PÉREMPTION ==========
+        // ========== FONCTION PÉREMPTION ==========
         function verifierPeremption(datePeremption) {
             if (!datePeremption) return { classe: '', texte: 'Non définie' };
             
@@ -1535,7 +1645,7 @@
             document.getElementById('recuModal').classList.add('active');
         }
 
-        // Recherche
+        // Recherche en temps réel
         document.getElementById('searchProduit').addEventListener('keyup', updateProduitsDisponibles);
     </script>
 </body>

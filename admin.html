@@ -59,7 +59,7 @@
     </div>
 
     <script>
-        // TA NOUVELLE CONFIGURATION FIREBASE
+        // Configuration Firebase CORRECTE
         const firebaseConfig = {
             apiKey: "AIzaSyAjsdsnH2qdd1tYwW0sU_ibdszwae2Ra0w",
             authDomain: "pharma-stock-7363d.firebaseapp.com",
@@ -73,6 +73,7 @@
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
+        // Fonction pour charger les utilisateurs
         function loadUsers() {
             db.collection('users').get()
                 .then((snapshot) => {
@@ -111,7 +112,10 @@
                 });
         }
 
+        // Charger au démarrage
         loadUsers();
+        
+        // Rafraîchir toutes les 30 secondes
         setInterval(loadUsers, 30000);
     </script>
 </body>
