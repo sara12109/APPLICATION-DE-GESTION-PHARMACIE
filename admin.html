@@ -44,11 +44,13 @@
                 <tr>
                     <th>Nom d'utilisateur</th>
                     <th>Email</th>
-                    <th>Nom de la pharmacie</th>
+                    <th>Pharmacie</th>
                     <th>Date d'inscription</th>
                 </tr>
             </thead>
-            <tbody id="usersTable"></tbody>
+            <tbody id="usersTable">
+                <tr><td colspan="4" style="text-align:center; padding:30px;">Chargement...</td></tr>
+            </tbody>
         </table>
         
         <div class="footer">
@@ -57,21 +59,20 @@
     </div>
 
     <script>
-        // Configuration Firebase
+        // TA NOUVELLE CONFIGURATION FIREBASE
         const firebaseConfig = {
-            apiKey: "AIzaSyAjsdsnH2qdd1tYw8sU_ibdszwae2Ra0w",
+            apiKey: "AIzaSyAjsdsnH2qdd1tYwW0sU_ibdszwae2Ra0w",
             authDomain: "pharma-stock-7363d.firebaseapp.com",
             projectId: "pharma-stock-7363d",
-            storageBucket: "pharma-stock-7363d.firebasestorage.googleapis.com",
-            messagingSenderId: "884357135995",
-            appId: "1:884357135995:web:4d88d8899a3fc76f5a8cde"
+            storageBucket: "pharma-stock-7363d.firebasestorage.app",
+            messagingSenderId: "804357135995",
+            appId: "1:804357135995:web:4d88d0899a3fc76f5a0cde"
         };
 
         // Initialiser Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // Fonction pour charger tous les utilisateurs
         function loadUsers() {
             db.collection('users').get()
                 .then((snapshot) => {
@@ -79,42 +80,38 @@
                     let total = 0;
                     let lastDate = null;
                     
-                    snapshot.forEach((doc) => {
-                        const user = doc.data();
-                        total++;
-                        
-                        // Trouver la dernière date d'inscription
-                        if (!lastDate || new Date(user.dateCreation) > new Date(lastDate)) {
-                            lastDate = user.dateCreation;
-                        }
-                        
-                        // Ajouter une ligne au tableau
-                        html += `<tr>
-                            <td><strong>${user.username || 'Non défini'}</strong></td>
-                            <td>${user.email || 'Non défini'}</td>
-                            <td>${user.nomPharmacie || 'Non défini'}</td>
-                            <td>${new Date(user.dateCreation).toLocaleString()}</td>
-                        </tr>`;
-                    });
+                    if (snapshot.empty) {
+                        html = '<tr><td colspan="4" style="text-align:center;">Aucun utilisateur inscrit</td></tr>';
+                    } else {
+                        snapshot.forEach((doc) => {
+                            const user = doc.data();
+                            total++;
+                            
+                            if (!lastDate || new Date(user.dateCreation) > new Date(lastDate)) {
+                                lastDate = user.dateCreation;
+                            }
+                            
+                            html += `<tr>
+                                <td><strong>${user.username || 'Non défini'}</strong></td>
+                                <td>${user.email || 'Non défini'}</td>
+                                <td>${user.nomPharmacie || 'Non défini'}</td>
+                                <td>${new Date(user.dateCreation).toLocaleString()}</td>
+                            </tr>`;
+                        });
+                    }
                     
-                    // Mettre à jour le tableau
-                    document.getElementById('usersTable').innerHTML = html || '<tr><td colspan="4" style="text-align:center;">Aucun utilisateur inscrit</td></tr>';
-                    
-                    // Mettre à jour les statistiques
+                    document.getElementById('usersTable').innerHTML = html;
                     document.getElementById('totalUsers').innerHTML = total;
                     document.getElementById('lastUser').innerHTML = lastDate ? new Date(lastDate).toLocaleDateString() : '-';
                     document.getElementById('totalPharmacies').innerHTML = total;
                 })
                 .catch((error) => {
-                    console.error('Erreur:', error);
-                    document.getElementById('usersTable').innerHTML = '<tr><td colspan="4" style="text-align:center; color:#e74c3c;">Erreur de chargement</td></tr>';
+                    console.error('Erreur Firebase:', error);
+                    document.getElementById('usersTable').innerHTML = '<tr><td colspan="4" style="text-align:center; color:#e74c3c;">Erreur de connexion Firebase</td></tr>';
                 });
         }
 
-        // Charger les utilisateurs au démarrage
         loadUsers();
-        
-        // Rafraîchir toutes les 30 secondes
         setInterval(loadUsers, 30000);
     </script>
 </body>
