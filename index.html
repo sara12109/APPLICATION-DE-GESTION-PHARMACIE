@@ -9,14 +9,34 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: linear-gradient(135deg, #2c3e50, #27ae60);
             min-height: 100vh;
+            padding-bottom: 60px;
             position: relative;
-            padding-bottom: 50px;
+        }
+        
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            text-align: center;
+            padding: 12px;
+            border-top: 3px solid #27ae60;
+            font-size: 15px;
+            font-weight: 500;
+            color: #2c3e50;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .footer strong {
+            color: #27ae60;
         }
         
         /* Page de connexion */
@@ -24,57 +44,167 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
+            padding: 20px;
+            background: linear-gradient(135deg, #2c3e50, #27ae60);
         }
         
         .login-box {
             background: white;
             padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            width: 400px;
-            text-align: center;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 450px;
+            max-width: 100%;
+            animation: slideIn 0.5s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
         
         .logo {
-            margin-bottom: 20px;
+            text-align: center;
+            margin-bottom: 30px;
         }
         
-        .logo img {
-            max-width: 150px;
-            max-height: 100px;
-            object-fit: contain;
+        .logo svg {
+            width: 80px;
+            height: 80px;
+            fill: #27ae60;
         }
         
-        .login-box h1 { 
-            color: #667eea; 
-            margin-bottom: 20px;
-        }
-        
-        .login-box input, .login-box select, .login-box button {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid #eee;
-            border-radius: 5px;
-        }
-        
-        .login-box button {
-            background: #667eea;
-            color: white;
-            cursor: pointer;
-            border: none;
-        }
-        
-        .register-link {
+        .logo h1 {
+            color: #27ae60;
             margin-top: 15px;
-            color: #667eea;
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #27ae60;
+            box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px 0;
+        }
+        
+        .btn-primary {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #219a52;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #7f8c8d;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #6c7a7a;
+        }
+        
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .btn-warning {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .btn-reset {
+            background: #e67e22;
+            color: white;
+            margin-bottom: 20px;
+            width: auto;
+            padding: 12px 25px;
+        }
+        
+        .security-links {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        
+        .security-links span {
+            color: #27ae60;
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .success-message {
+            color: #27ae60;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 500;
         }
         
         /* Application principale */
-        .app {
+        .app-container {
             display: none;
+            background: #f5f6fa;
+            min-height: 100vh;
         }
         
         .navbar {
@@ -83,137 +213,451 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
         }
         
         .nav-links a {
             text-decoration: none;
-            color: #333;
-            padding: 8px 15px;
+            color: #2c3e50;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
+            font-weight: 500;
         }
         
-        .nav-links a:hover, .nav-links a.active {
-            background: #667eea;
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: #27ae60;
             color: white;
-            border-radius: 5px;
+            transform: translateY(-2px);
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .user-badge {
+            background: #f0f0f0;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 500;
+            color: #2c3e50;
         }
         
         .logout-btn {
             background: #e74c3c;
             color: white;
             border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
+            padding: 8px 20px;
+            border-radius: 8px;
             cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .logout-btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
         }
         
         .content {
             padding: 30px;
             max-width: 1400px;
             margin: 0 auto;
-            padding-bottom: 70px;
         }
         
         .section {
             display: none;
+            animation: fadeIn 0.5s ease;
         }
         
         .section.active {
             display: block;
         }
         
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        /* Statistiques */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
         }
         
         .stat-card {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            border-left: 5px solid #27ae60;
         }
         
-        .stat-card .value {
-            font-size: 28px;
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .stat-card h3 {
+            color: #7f8c8d;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+        
+        .stat-value {
+            font-size: 36px;
             font-weight: bold;
-            color: #667eea;
+            color: #2c3e50;
         }
         
-        .vente-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        
-        .produits-list, .panier {
+        /* Bouton remise à zéro */
+        .reset-section {
             background: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .reset-section p {
+            color: #7f8c8d;
+        }
+        
+        /* Produits - Grille */
+        .produits-container {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .produits-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .produits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .produit-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            border: 1px solid #ecf0f1;
+        }
+        
+        .produit-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: #27ae60;
+        }
+        
+        .produit-info h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .produit-info p {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        
+        .produit-info .stock-normal {
+            color: #27ae60;
+            font-weight: 500;
+        }
+        
+        .produit-info .stock-faible {
+            color: #e74c3c;
+            font-weight: 500;
+        }
+        
+        .produit-info .expire {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .produit-info .expire-bientot {
+            color: #f39c12;
+            font-weight: 500;
+        }
+        
+        .produit-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .action-btn {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .btn-edit {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .btn-edit:hover {
+            background: #e67e22;
+        }
+        
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .btn-delete:hover {
+            background: #c0392b;
+        }
+        
+        /* Ventes - Organisation séparée */
+        .ventes-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .recherche-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .recherche-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: #27ae60;
+            box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+        }
+        
+        .produits-liste {
+            max-height: 500px;
+            overflow-y: auto;
+            border: 1px solid #ecf0f1;
+            border-radius: 10px;
         }
         
         .produit-item {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 15px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #ecf0f1;
             cursor: pointer;
+            transition: all 0.3s;
         }
         
         .produit-item:hover {
-            background: #f0f4ff;
+            background: #e8f8f5;
         }
         
-        .produit-prix {
+        .produit-item:last-child {
+            border-bottom: none;
+        }
+        
+        .produit-item .produit-info h4 {
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+        
+        .produit-item .produit-prix {
             font-weight: bold;
             color: #27ae60;
+            font-size: 18px;
+        }
+        
+        .panier-section {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .panier-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 18px;
         }
         
         .panier-items {
-            max-height: 300px;
+            max-height: 350px;
             overflow-y: auto;
-            margin: 20px 0;
+            border: 1px solid #ecf0f1;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
         
         .panier-item {
             display: flex;
             justify-content: space-between;
-            padding: 10px;
-            border-bottom: 1px solid #eee;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
         }
         
-        .btn {
-            padding: 10px 20px;
+        .panier-item:last-child {
+            border-bottom: none;
+        }
+        
+        .panier-item-info h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .panier-item-actions {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        
+        .btn-quantite {
+            width: 35px;
+            height: 35px;
             border: none;
             border-radius: 5px;
+            background: #ecf0f1;
+            color: #2c3e50;
+            font-weight: bold;
             cursor: pointer;
-            margin: 5px;
+            transition: all 0.3s;
         }
         
-        .btn-primary { background: #667eea; color: white; }
-        .btn-success { background: #27ae60; color: white; }
-        .btn-danger { background: #e74c3c; color: white; }
+        .btn-quantite:hover {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .btn-remove {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 5px;
+            background: #e74c3c;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-remove:hover {
+            background: #c0392b;
+        }
+        
+        .panier-total {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: right;
+            font-size: 22px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        
+        .panier-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        /* Historique */
+        .historique-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
         
         table {
             width: 100%;
-            background: white;
-            border-radius: 10px;
             border-collapse: collapse;
         }
         
         th {
-            background: #667eea;
+            background: #27ae60;
             color: white;
-            padding: 12px;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
         }
         
         td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
+            padding: 15px;
+            border-bottom: 1px solid #ecf0f1;
+            color: #2c3e50;
         }
         
+        .btn-view {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        /* Modals */
         .modal {
             display: none;
             position: fixed;
@@ -224,6 +668,7 @@
             background: rgba(0,0,0,0.5);
             justify-content: center;
             align-items: center;
+            z-index: 2000;
         }
         
         .modal.active {
@@ -232,57 +677,155 @@
         
         .modal-content {
             background: white;
-            padding: 30px;
-            border-radius: 10px;
+            padding: 40px;
+            border-radius: 20px;
             max-width: 500px;
             width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
         }
         
-        /* Footer avec crédits */
-        .footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        /* Alertes */
+        .alertes-section {
             background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        .alerte-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: #fef9e7;
+            border-left: 5px solid #f39c12;
+            border-radius: 8px;
+        }
+        
+        .alerte-item.danger {
+            background: #fdedec;
+            border-left-color: #e74c3c;
+        }
+        
+        /* Reçu */
+        .recu-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+        }
+        
+        .recu-header {
             text-align: center;
-            padding: 12px;
-            border-top: 2px solid #667eea;
-            font-size: 14px;
-            color: #333;
-            z-index: 100;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #27ae60;
         }
         
-        .footer strong {
-            color: #667eea;
+        .recu-header svg {
+            width: 60px;
+            height: 60px;
+            fill: #27ae60;
+            margin-bottom: 10px;
         }
         
-        .stock-faible { color: #e74c3c; }
-        .expire { color: #e74c3c; font-weight: bold; }
-        .expire-bientot { color: #f39c12; }
+        .recu-header h3 {
+            color: #27ae60;
+            font-size: 24px;
+        }
         
-        /* Style pour le reçu */
-        .recu-logo {
+        .recu-infos {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .recu-infos p {
+            margin: 5px 0;
+            color: #2c3e50;
+        }
+        
+        .recu-details {
+            margin: 20px 0;
+        }
+        
+        .recu-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #bdc3c7;
+        }
+        
+        .recu-total {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #27ae60;
+            text-align: right;
+            font-size: 22px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        
+        .recu-message {
             text-align: center;
-            margin-bottom: 15px;
-        }
-        
-        .recu-logo img {
-            max-width: 120px;
-            max-height: 80px;
+            margin: 20px 0;
+            padding: 15px;
+            background: #e8f8f5;
+            border-radius: 8px;
+            color: #27ae60;
+            font-style: italic;
         }
         
         .recu-footer {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #666;
             text-align: center;
-            border-top: 1px solid #ddd;
-            padding-top: 10px;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ecf0f1;
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+        
+        .btn-print {
+            background: #3498db;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 20px;
+            width: 100%;
+        }
+        
+        .btn-print:hover {
+            background: #2980b9;
+        }
+        
+        @media (max-width: 768px) {
+            .ventes-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .produits-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .reset-section {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Footer avec vos informations (visible partout) -->
+    <!-- Footer avec vos informations -->
     <div class="footer">
         Développé par <strong>ADAMOU SARA ABDOURAHAMANE</strong> | 📞 88902505
     </div>
@@ -291,127 +834,222 @@
     <div id="loginPage" class="login-page">
         <div class="login-box">
             <div class="logo">
-                <!-- VOTRE LOGO ICI - Remplacez "votre-logo.png" par le nom de votre fichier -->
-                <img src="votre-logo.png" alt="Logo Pharmacie" onerror="this.style.display='none'">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="#667eea">
+                <svg viewBox="0 0 24 24">
                     <path d="M12 2L2 7v10l10 5 10-5V7l-10-5zm0 2.2l6 3v6.5l-6 3-6-3V7.2l6-3zM8 9v2h3v3h2v-3h3V9h-3V6h-2v3H8z"/>
                 </svg>
                 <h1>PHARMA STOCK</h1>
             </div>
             
+            <!-- Formulaire de connexion -->
             <div id="loginForm">
-                <input type="text" id="username" placeholder="Nom d'utilisateur">
-                <input type="password" id="password" placeholder="Mot de passe">
-                <select id="role">
-                    <option value="admin">Administrateur</option>
-                    <option value="caissier">Caissier</option>
-                </select>
-                <button onclick="login()">Se connecter</button>
-                <div id="errorMsg" style="color: red;"></div>
+                <div class="form-group">
+                    <label>Nom d'utilisateur</label>
+                    <input type="text" id="username" placeholder="Entrez votre nom d'utilisateur">
+                </div>
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input type="password" id="password" placeholder="Entrez votre mot de passe">
+                </div>
+                
+                <button class="btn btn-primary" onclick="login()">Se connecter</button>
+                
+                <div class="security-links">
+                    <span onclick="showFirstConnection()">Créer un compte</span>
+                    <span onclick="showSecurity()">Mot de passe oublié ?</span>
+                </div>
+                
+                <div id="loginError" class="error-message"></div>
             </div>
             
-            <div id="registerForm" style="display: none;">
-                <input type="text" id="regUsername" placeholder="Nom d'utilisateur">
-                <input type="password" id="regPassword" placeholder="Mot de passe">
-                <input type="password" id="regConfirm" placeholder="Confirmer">
-                <select id="regRole">
-                    <option value="admin">Administrateur</option>
-                    <option value="caissier">Caissier</option>
-                </select>
-                <button onclick="register()">Créer mon compte</button>
-                <div id="regErrorMsg" style="color: red;"></div>
+            <!-- Création du premier compte admin -->
+            <div id="firstConnectionForm" style="display: none;">
+                <h3 style="color: #27ae60; margin-bottom: 20px;">Créer le compte administrateur</h3>
+                
+                <div class="form-group">
+                    <label>Nom d'utilisateur</label>
+                    <input type="text" id="adminUsername" placeholder="Choisissez un nom">
+                </div>
+                
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input type="password" id="adminPassword" placeholder="8+ caractères, majuscule, chiffre, spécial">
+                </div>
+                
+                <div class="form-group">
+                    <label>Confirmer le mot de passe</label>
+                    <input type="password" id="adminConfirm" placeholder="Confirmez">
+                </div>
+                
+                <div class="form-group">
+                    <label>Question de sécurité</label>
+                    <input type="text" id="securityAnswer" placeholder="Nom de votre pharmacie ?">
+                </div>
+                
+                <p style="font-size: 13px; color: #7f8c8d; margin: 15px 0;">
+                    Le mot de passe doit contenir au moins 8 caractères,<br>
+                    une majuscule, un chiffre et un caractère spécial (@, !, #, etc.)
+                </p>
+                
+                <button class="btn btn-primary" onclick="createAdminAccount()">Créer mon compte</button>
+                <button class="btn btn-secondary" onclick="backToLogin()">Retour</button>
+                
+                <div id="firstError" class="error-message"></div>
             </div>
             
-            <div class="register-link" onclick="toggleForms()">Créer un nouveau compte</div>
+            <!-- Question de sécurité -->
+            <div id="securityForm" style="display: none;">
+                <h3 style="color: #27ae60; margin-bottom: 20px;">Récupération de compte</h3>
+                
+                <p style="margin-bottom: 20px;">Question : <strong>Nom de votre pharmacie ?</strong></p>
+                
+                <div class="form-group">
+                    <label>Votre réponse</label>
+                    <input type="text" id="securityUserAnswer" placeholder="Entrez votre réponse">
+                </div>
+                
+                <button class="btn btn-primary" onclick="checkSecurityAnswer()">Vérifier</button>
+                <button class="btn btn-secondary" onclick="backToLogin()">Retour</button>
+                
+                <div id="securityError" class="error-message"></div>
+                <div id="securitySuccess" class="success-message"></div>
+            </div>
+            
+            <!-- Formulaire de réinitialisation -->
+            <div id="resetForm" style="display: none;">
+                <h3 style="color: #27ae60; margin-bottom: 20px;">Réinitialiser le mot de passe</h3>
+                
+                <div class="form-group">
+                    <label>Nouveau mot de passe</label>
+                    <input type="password" id="newPassword" placeholder="8+ caractères, majuscule, chiffre, spécial">
+                </div>
+                
+                <div class="form-group">
+                    <label>Confirmer le mot de passe</label>
+                    <input type="password" id="newPasswordConfirm" placeholder="Confirmez">
+                </div>
+                
+                <button class="btn btn-primary" onclick="resetPassword()">Réinitialiser</button>
+                <button class="btn btn-secondary" onclick="backToLogin()">Retour</button>
+                
+                <div id="resetError" class="error-message"></div>
+            </div>
         </div>
     </div>
 
-    <!-- Application -->
-    <div id="app" class="app">
+    <!-- Application principale -->
+    <div id="app" class="app-container">
         <div class="navbar">
             <div class="nav-links">
-                <a href="#" onclick="showSection('dashboard')" class="active">📊 Accueil</a>
-                <a href="#" onclick="showSection('ventes')">💰 Ventes</a>
-                <a href="#" onclick="showSection('produits')">📦 Produits</a>
-                <a href="#" onclick="showSection('historique')">📜 Historique</a>
+                <a href="#" onclick="showSection('dashboard', event)" class="active">📊 Tableau de bord</a>
+                <a href="#" onclick="showSection('produits', event)">📦 Produits</a>
+                <a href="#" onclick="showSection('ventes', event)">💰 Ventes</a>
+                <a href="#" onclick="showSection('historique', event)">📜 Historique</a>
             </div>
-            <div>
-                <span id="userDisplay"></span>
+            <div class="user-info">
+                <span class="user-badge" id="userDisplay"></span>
                 <button class="logout-btn" onclick="logout()">Déconnexion</button>
             </div>
         </div>
 
         <div class="content">
-            <!-- Dashboard -->
+            <!-- Tableau de bord -->
             <div id="dashboard" class="section active">
                 <h2>Tableau de bord</h2>
+                
+                <!-- Bouton de remise à zéro -->
+                <div class="reset-section">
+                    <p>⚠️ Pour mettre en vente, vous devez d'abord créer vos produits.</p>
+                    <button class="btn btn-warning" onclick="resetAllData()">🗑️ Remettre à zéro (supprimer toutes les données de test)</button>
+                </div>
+                
                 <div class="stats-grid">
                     <div class="stat-card">
-                        <h3>Produits</h3>
-                        <div class="value" id="totalProduits">0</div>
+                        <h3>Total des produits</h3>
+                        <div class="stat-value" id="totalProduits">0</div>
                     </div>
                     <div class="stat-card">
                         <h3>Stock faible</h3>
-                        <div class="value" id="stockFaible">0</div>
+                        <div class="stat-value" id="stockFaible">0</div>
                     </div>
                     <div class="stat-card">
-                        <h3>Ventes jour</h3>
-                        <div class="value" id="ventesJour">0</div>
+                        <h3>Produits expirés</h3>
+                        <div class="stat-value" id="produitsExpires">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Ventes du jour</h3>
+                        <div class="stat-value" id="ventesJour">0 FCFA</div>
                     </div>
                 </div>
-                <div id="alertesList" style="background:white; padding:20px; border-radius:10px;"></div>
-            </div>
 
-            <!-- Ventes -->
-            <div id="ventes" class="section">
-                <h2>Ventes</h2>
-                <div class="vente-container">
-                    <div class="produits-list">
-                        <h3>Produits</h3>
-                        <input type="text" id="searchProduit" placeholder="Rechercher..." style="width:100%; padding:10px; margin:10px 0;">
-                        <div id="produitsDisponibles"></div>
-                    </div>
-                    <div class="panier">
-                        <h3>Panier (<span id="panierCount">0</span>)</h3>
-                        <div id="panierItems" class="panier-items"></div>
-                        <h3>Total: <span id="totalFinal">0</span> FCFA</h3>
-                        <button class="btn btn-danger" onclick="viderPanier()">Vider</button>
-                        <button class="btn btn-success" onclick="finaliserVente()">Vendre</button>
-                    </div>
+                <div class="alertes-section">
+                    <h3>⚠️ Alertes et notifications</h3>
+                    <div id="alertesList"></div>
                 </div>
             </div>
 
             <!-- Produits -->
             <div id="produits" class="section">
-                <h2>Produits</h2>
-                <button class="btn btn-primary" onclick="showAddProduct()">+ Ajouter</button>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Nom</th>
-                            <th>Prix</th>
-                            <th>Stock</th>
-                            <th>Expiration</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="produitsTable"></tbody>
-                </table>
+                <h2>Gestion des produits</h2>
+                
+                <div class="produits-container">
+                    <div class="produits-header">
+                        <h3>Liste des produits</h3>
+                        <button class="btn btn-primary" onclick="showAddProductModal()" style="width: auto; padding: 12px 30px;">
+                            + Nouveau produit
+                        </button>
+                    </div>
+                    
+                    <div class="produits-grid" id="produitsGrid">
+                        <!-- Les produits s'affichent ici -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ventes -->
+            <div id="ventes" class="section">
+                <h2>Ventes</h2>
+                
+                <div class="ventes-container">
+                    <!-- Section Recherche -->
+                    <div class="recherche-section">
+                        <h3>Rechercher un produit</h3>
+                        <input type="text" id="searchProduit" class="search-box" placeholder="Tapez le nom du produit...">
+                        <div id="produitsListe" class="produits-liste"></div>
+                    </div>
+                    
+                    <!-- Section Panier -->
+                    <div class="panier-section">
+                        <h3>Panier <span id="panierCount">(0)</span></h3>
+                        <div id="panierItems" class="panier-items"></div>
+                        <div class="panier-total">
+                            Total: <span id="panierTotal">0</span> FCFA
+                        </div>
+                        <div class="panier-actions">
+                            <button class="btn btn-secondary" onclick="viderPanier()">Vider</button>
+                            <button class="btn btn-primary" onclick="confirmerVente()">Finaliser</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Historique -->
             <div id="historique" class="section">
-                <h2>Historique</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Total</th>
-                            <th>Articles</th>
-                        </tr>
-                    </thead>
-                    <tbody id="historiqueTable"></tbody>
-                </table>
+                <h2>Historique des ventes</h2>
+                
+                <div class="historique-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Heure</th>
+                                <th>Total</th>
+                                <th>Articles</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historiqueTable"></tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -419,31 +1057,89 @@
     <!-- Modal produit -->
     <div id="productModal" class="modal">
         <div class="modal-content">
-            <h3 id="modalTitle">Ajouter produit</h3>
+            <h3 id="modalTitle">Ajouter un produit</h3>
+            
             <input type="hidden" id="productId">
-            <input type="text" id="prodNom" placeholder="Nom" style="width:100%; padding:10px; margin:5px 0;">
-            <input type="number" id="prodPrix" placeholder="Prix" style="width:100%; padding:10px; margin:5px 0;">
-            <input type="number" id="prodStock" placeholder="Stock" style="width:100%; padding:10px; margin:5px 0;">
-            <input type="date" id="prodDatePeremption" style="width:100%; padding:10px; margin:5px 0;">
-            <button class="btn btn-success" onclick="sauvegarderProduit()">OK</button>
-            <button class="btn btn-danger" onclick="closeModal()">Annuler</button>
+            
+            <div class="form-group">
+                <label>Nom du produit</label>
+                <input type="text" id="productNom" placeholder="Ex: Paracétamol 500mg">
+            </div>
+            
+            <div class="form-group">
+                <label>Prix (FCFA)</label>
+                <input type="number" id="productPrix" placeholder="Ex: 1500">
+            </div>
+            
+            <div class="form-group">
+                <label>Stock initial</label>
+                <input type="number" id="productStock" placeholder="Ex: 100">
+            </div>
+            
+            <div class="form-group">
+                <label>Date de péremption</label>
+                <input type="date" id="productPeremption">
+            </div>
+            
+            <div class="form-group">
+                <label>Seuil d'alerte</label>
+                <input type="number" id="productSeuil" value="5" placeholder="Ex: 5">
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="saveProduct()">Enregistrer</button>
+                <button class="btn btn-secondary" onclick="closeModal()">Annuler</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal confirmation vente -->
+    <div id="confirmVenteModal" class="modal">
+        <div class="modal-content">
+            <h3>Confirmer la vente</h3>
+            
+            <div style="margin: 25px 0; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                <div id="confirmDetails"></div>
+                <hr style="margin: 15px 0;">
+                <p style="font-size: 20px; font-weight: bold; text-align: right; color: #27ae60;">
+                    Total: <span id="confirmTotal">0</span> FCFA
+                </p>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn btn-primary" onclick="finaliserVente()">Confirmer</button>
+                <button class="btn btn-secondary" onclick="closeConfirmModal()">Annuler</button>
+            </div>
         </div>
     </div>
 
     <!-- Modal reçu -->
     <div id="recuModal" class="modal">
-        <div class="modal-content" style="max-width:400px;">
-            <div class="recu-logo">
-                <!-- VOTRE LOGO SUR LE REÇU -->
-                <img src="votre-logo.png" alt="Logo" style="max-width:100px; max-height:60px;" onerror="this.style.display='none'">
-                <h3>PHARMA STOCK</h3>
+        <div class="modal-content" style="max-width: 450px;">
+            <div class="recu-container">
+                <div class="recu-header">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 2L2 7v10l10 5 10-5V7l-10-5zm0 2.2l6 3v6.5l-6 3-6-3V7.2l6-3zM8 9v2h3v3h2v-3h3V9h-3V6h-2v3H8z"/>
+                    </svg>
+                    <h3>PHARMA STOCK</h3>
+                </div>
+                
+                <div class="recu-infos" id="recuInfos"></div>
+                <div class="recu-details" id="recuDetails"></div>
+                <div class="recu-total" id="recuTotal"></div>
+                
+                <div class="recu-message">
+                    <p>🙏 Bon rétablissement et bonne santé !</p>
+                </div>
+                
+                <div class="recu-footer">
+                    <p>Développé par ADAMOU SARA ABDOURAHAMANE</p>
+                    <p>📞 88902505</p>
+                </div>
+                
+                <button class="btn-print" onclick="imprimerRecu()">🖨️ Imprimer</button>
+                <button class="btn btn-secondary" onclick="closeRecu()" style="margin-top: 10px;">Fermer</button>
             </div>
-            <div id="recuContent"></div>
-            <div class="recu-footer">
-                Développé par ADAMOU SARA ABDOURAHAMANE<br>
-                📞 88902505
-            </div>
-            <button class="btn btn-primary" onclick="closeRecu()" style="margin-top:15px;">Fermer</button>
         </div>
     </div>
 
@@ -452,117 +1148,216 @@
         let produits = [];
         let ventes = [];
         let panier = [];
-        let utilisateurs = []; // AUCUN MOT DE PASSE PAR DÉFAUT
         let currentUser = null;
+        let adminAccount = null;
 
         // ========== INITIALISATION ==========
         window.onload = function() {
-            loadData();
-            if (localStorage.getItem('currentUser')) {
-                currentUser = JSON.parse(localStorage.getItem('currentUser'));
-                showApp();
-            }
+            chargerDonnees();
+            verifierConnexion();
         };
 
-        function loadData() {
-            produits = JSON.parse(localStorage.getItem('produits')) || [
-                {id:1, nom:'Paracétamol 500mg', prix:1500, stock:100, seuil:10, datePeremption:'2025-12-31'},
-                {id:2, nom:'Amoxicilline 250mg', prix:2500, stock:8, seuil:5, datePeremption:'2024-06-30'},
-                {id:3, nom:'Vitamine C 1000mg', prix:3500, stock:25, seuil:5, datePeremption:'2026-03-15'}
-            ];
-            ventes = JSON.parse(localStorage.getItem('ventes')) || [];
-            utilisateurs = JSON.parse(localStorage.getItem('utilisateurs')) || []; // AUCUN COMPTE PAR DÉFAUT
+        function chargerDonnees() {
+            let savedProduits = localStorage.getItem('produits');
+            let savedVentes = localStorage.getItem('ventes');
+            let savedAdmin = localStorage.getItem('adminAccount');
             
-            // S'il n'y a aucun utilisateur, on ne crée rien
-            // L'utilisateur devra créer son premier compte
+            // NE PAS CHARGER DE DONNÉES DE TEST - COMMENCER AVEC UN TABLEAU VIDE
+            produits = savedProduits ? JSON.parse(savedProduits) : [];
+            ventes = savedVentes ? JSON.parse(savedVentes) : [];
+            adminAccount = savedAdmin ? JSON.parse(savedAdmin) : null;
             
-            saveData();
+            sauvegarderDonnees();
         }
 
-        function saveData() {
+        function sauvegarderDonnees() {
             localStorage.setItem('produits', JSON.stringify(produits));
             localStorage.setItem('ventes', JSON.stringify(ventes));
-            localStorage.setItem('utilisateurs', JSON.stringify(utilisateurs));
-        }
-
-        // ========== GESTION DES COMPTES ==========
-        function toggleForms() {
-            let l = document.getElementById('loginForm');
-            let r = document.getElementById('registerForm');
-            if (l.style.display === 'none') {
-                l.style.display = 'block';
-                r.style.display = 'none';
-            } else {
-                l.style.display = 'none';
-                r.style.display = 'block';
-                // Vider les champs
-                document.getElementById('regUsername').value = '';
-                document.getElementById('regPassword').value = '';
-                document.getElementById('regConfirm').value = '';
-                document.getElementById('regErrorMsg').innerHTML = '';
+            if (adminAccount) {
+                localStorage.setItem('adminAccount', JSON.stringify(adminAccount));
             }
         }
 
-        function register() {
-            let u = document.getElementById('regUsername').value;
-            let p = document.getElementById('regPassword').value;
-            let c = document.getElementById('regConfirm').value;
-            let r = document.getElementById('regRole').value;
-            
-            if (!u || !p || !c) {
-                document.getElementById('regErrorMsg').innerHTML = 'Remplissez tous les champs';
-                return;
+        // ========== REMISE À ZÉRO TOTALE ==========
+        function resetAllData() {
+            if (confirm('⚠️ Êtes-vous sûr de vouloir supprimer TOUTES les données ?\n\nCette action est irréversible.')) {
+                // Vider tous les tableaux
+                produits = [];
+                ventes = [];
+                panier = [];
+                
+                // Sauvegarder
+                sauvegarderDonnees();
+                
+                // Mettre à jour l'affichage
+                updateDashboard();
+                updateProduitsGrid();
+                updateProduitsDisponibles();
+                updatePanier();
+                updateHistorique();
+                
+                alert('✅ Toutes les données ont été supprimées. Vous pouvez maintenant créer vos propres produits.');
             }
-            if (p !== c) {
-                document.getElementById('regErrorMsg').innerHTML = 'Les mots de passe ne correspondent pas';
-                return;
-            }
-            if (utilisateurs.some(x => x.username === u)) {
-                document.getElementById('regErrorMsg').innerHTML = 'Ce nom existe déjà';
-                return;
-            }
-            
-            utilisateurs.push({username: u, password: p, role: r});
-            saveData();
-            alert('✅ Compte créé avec succès ! Vous pouvez maintenant vous connecter.');
-            
-            // Revenir à la connexion
+        }
+
+        // ========== GESTION DE LA CONNEXION ==========
+        function showFirstConnection() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('firstConnectionForm').style.display = 'block';
+            document.getElementById('securityForm').style.display = 'none';
+            document.getElementById('resetForm').style.display = 'none';
+        }
+
+        function showSecurity() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('firstConnectionForm').style.display = 'none';
+            document.getElementById('securityForm').style.display = 'block';
+            document.getElementById('resetForm').style.display = 'none';
+        }
+
+        function backToLogin() {
             document.getElementById('loginForm').style.display = 'block';
-            document.getElementById('registerForm').style.display = 'none';
-            document.getElementById('toggleLink').innerHTML = 'Créer un nouveau compte';
+            document.getElementById('firstConnectionForm').style.display = 'none';
+            document.getElementById('securityForm').style.display = 'none';
+            document.getElementById('resetForm').style.display = 'none';
             
-            // Vider les champs de connexion
-            document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
+            document.getElementById('loginError').innerHTML = '';
+            document.getElementById('firstError').innerHTML = '';
+            document.getElementById('securityError').innerHTML = '';
+            document.getElementById('securitySuccess').innerHTML = '';
+            document.getElementById('resetError').innerHTML = '';
+        }
+
+        function createAdminAccount() {
+            let username = document.getElementById('adminUsername').value.trim();
+            let password = document.getElementById('adminPassword').value;
+            let confirm = document.getElementById('adminConfirm').value;
+            let answer = document.getElementById('securityAnswer').value.trim().toLowerCase();
+            
+            if (!username || !password || !confirm || !answer) {
+                document.getElementById('firstError').innerHTML = 'Tous les champs sont requis';
+                return;
+            }
+            
+            if (password !== confirm) {
+                document.getElementById('firstError').innerHTML = 'Les mots de passe ne correspondent pas';
+                return;
+            }
+            
+            let passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            if (!passwordRegex.test(password)) {
+                document.getElementById('firstError').innerHTML = 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial';
+                return;
+            }
+            
+            adminAccount = {
+                username: username,
+                password: password,
+                securityAnswer: answer
+            };
+            
+            localStorage.setItem('adminAccount', JSON.stringify(adminAccount));
+            
+            document.getElementById('firstError').innerHTML = '<span style="color: #27ae60;">✅ Compte créé avec succès !</span>';
+            
+            setTimeout(() => {
+                backToLogin();
+            }, 2000);
+        }
+
+        function checkSecurityAnswer() {
+            let answer = document.getElementById('securityUserAnswer').value.trim().toLowerCase();
+            
+            if (!adminAccount) {
+                document.getElementById('securityError').innerHTML = 'Aucun compte administrateur trouvé';
+                return;
+            }
+            
+            if (answer === adminAccount.securityAnswer) {
+                document.getElementById('securityError').innerHTML = '';
+                document.getElementById('securitySuccess').innerHTML = '✅ Réponse correcte. Veuillez entrer votre nouveau mot de passe.';
+                
+                document.getElementById('securityForm').style.display = 'none';
+                document.getElementById('resetForm').style.display = 'block';
+            } else {
+                document.getElementById('securityError').innerHTML = '❌ Réponse incorrecte';
+                document.getElementById('securitySuccess').innerHTML = '';
+            }
+        }
+
+        function resetPassword() {
+            let newPassword = document.getElementById('newPassword').value;
+            let newConfirm = document.getElementById('newPasswordConfirm').value;
+            
+            if (!newPassword || !newConfirm) {
+                document.getElementById('resetError').innerHTML = 'Veuillez remplir tous les champs';
+                return;
+            }
+            
+            if (newPassword !== newConfirm) {
+                document.getElementById('resetError').innerHTML = 'Les mots de passe ne correspondent pas';
+                return;
+            }
+            
+            let passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            if (!passwordRegex.test(newPassword)) {
+                document.getElementById('resetError').innerHTML = 'Le mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un caractère spécial';
+                return;
+            }
+            
+            adminAccount.password = newPassword;
+            localStorage.setItem('adminAccount', JSON.stringify(adminAccount));
+            
+            document.getElementById('resetError').innerHTML = '<span style="color: #27ae60;">✅ Mot de passe réinitialisé avec succès !</span>';
+            
+            setTimeout(() => {
+                backToLogin();
+            }, 2000);
         }
 
         function login() {
-            let u = document.getElementById('username').value;
-            let p = document.getElementById('password').value;
-            let r = document.getElementById('role').value;
+            let username = document.getElementById('username').value.trim();
+            let password = document.getElementById('password').value;
             
-            if (!u || !p) {
-                document.getElementById('errorMsg').innerHTML = 'Entrez vos identifiants';
+            if (!adminAccount) {
+                document.getElementById('loginError').innerHTML = 'Aucun compte administrateur. Cliquez sur "Créer un compte".';
                 return;
             }
             
-            let user = utilisateurs.find(x => x.username === u && x.password === p && x.role === r);
-            if (user) {
-                currentUser = {name: u, role: r};
+            if (username === adminAccount.username && password === adminAccount.password) {
+                currentUser = {
+                    username: username,
+                    loginTime: new Date().toISOString()
+                };
+                
                 localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                showApp();
+                
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('app').style.display = 'block';
+                document.getElementById('userDisplay').innerHTML = `👤 ${username}`;
+                
+                updateDashboard();
+                updateProduitsGrid();
+                updateProduitsDisponibles();
+                updateHistorique();
             } else {
-                document.getElementById('errorMsg').innerHTML = '❌ Identifiants incorrects';
+                document.getElementById('loginError').innerHTML = 'Nom d\'utilisateur ou mot de passe incorrect';
             }
         }
 
-        function showApp() {
-            document.getElementById('loginPage').style.display = 'none';
-            document.getElementById('app').style.display = 'block';
-            document.getElementById('userDisplay').innerHTML = currentUser.name + ' (' + currentUser.role + ')';
-            updateDashboard();
-            updateProduitsList();
-            updateProduitsDisponibles();
+        function verifierConnexion() {
+            let savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('app').style.display = 'block';
+                document.getElementById('userDisplay').innerHTML = `👤 ${currentUser.username}`;
+                
+                updateDashboard();
+                updateProduitsGrid();
+                updateProduitsDisponibles();
+                updateHistorique();
+            }
         }
 
         function logout() {
@@ -573,127 +1368,201 @@
         }
 
         // ========== NAVIGATION ==========
-        function showSection(s) {
-            document.querySelectorAll('.section').forEach(x => x.classList.remove('active'));
-            document.getElementById(s).classList.add('active');
-            if (s === 'dashboard') updateDashboard();
-            if (s === 'produits') updateProduitsList();
-            if (s === 'ventes') updateProduitsDisponibles();
-            if (s === 'historique') updateHistorique();
+        function showSection(section, event) {
+            if (event) {
+                event.preventDefault();
+            }
+            
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+            
+            document.getElementById(section).classList.add('active');
+            
+            if (event) {
+                event.target.classList.add('active');
+            }
+            
+            if (section === 'dashboard') updateDashboard();
+            if (section === 'produits') updateProduitsGrid();
+            if (section === 'ventes') {
+                updateProduitsDisponibles();
+                updatePanier();
+            }
+            if (section === 'historique') updateHistorique();
+        }
+
+        // ========== FONCTION POUR VÉRIFIER LA PÉREMPTION ==========
+        function verifierPeremption(datePeremption) {
+            if (!datePeremption) return { classe: '', texte: 'Non définie' };
+            
+            let aujourdhui = new Date();
+            aujourdhui.setHours(0, 0, 0, 0);
+            
+            let datePerem = new Date(datePeremption);
+            datePerem.setHours(0, 0, 0, 0);
+            
+            let diffJours = Math.ceil((datePerem - aujourdhui) / (1000 * 60 * 60 * 24));
+            
+            if (diffJours < 0) {
+                return { classe: 'expire', texte: 'EXPIRÉ' };
+            } else if (diffJours <= 30) {
+                return { classe: 'expire-bientot', texte: `Expire dans ${diffJours} jours` };
+            } else {
+                return { classe: 'stock-normal', texte: `Valide jusqu'au ${new Date(datePeremption).toLocaleDateString()}` };
+            }
         }
 
         // ========== TABLEAU DE BORD ==========
         function updateDashboard() {
             document.getElementById('totalProduits').innerHTML = produits.length;
-            document.getElementById('stockFaible').innerHTML = produits.filter(p => p.stock < p.seuil).length;
+            
+            let stockFaible = produits.filter(p => p.stock < p.seuil).length;
+            document.getElementById('stockFaible').innerHTML = stockFaible;
+            
+            let aujourdhui = new Date();
+            aujourdhui.setHours(0, 0, 0, 0);
+            
+            let produitsExpires = produits.filter(p => {
+                if (!p.peremption) return false;
+                let datePerem = new Date(p.peremption);
+                datePerem.setHours(0, 0, 0, 0);
+                return datePerem < aujourdhui;
+            }).length;
+            document.getElementById('produitsExpires').innerHTML = produitsExpires;
             
             let today = new Date().toDateString();
-            let total = ventes.filter(v => new Date(v.date).toDateString() === today).reduce((s, v) => s + v.total, 0);
-            document.getElementById('ventesJour').innerHTML = total + ' FCFA';
+            let ventesToday = ventes.filter(v => new Date(v.date).toDateString() === today);
+            let totalJour = ventesToday.reduce((sum, v) => sum + v.total, 0);
+            document.getElementById('ventesJour').innerHTML = totalJour.toLocaleString() + ' FCFA';
             
-            // Alertes
-            let alertes = produits.filter(p => p.stock < p.seuil);
-            let alertesHtml = '<h4>⚠️ Alertes stock faible</h4>';
+            let alertes = [];
+            
+            produits.forEach(p => {
+                if (p.stock < p.seuil) {
+                    alertes.push(`⚠️ ${p.nom} - Stock faible: ${p.stock} (seuil: ${p.seuil})`);
+                }
+                
+                if (p.peremption) {
+                    let peremption = verifierPeremption(p.peremption);
+                    if (peremption.classe === 'expire') {
+                        alertes.push(`❌ ${p.nom} - PRODUIT EXPIRÉ !`);
+                    } else if (peremption.classe === 'expire-bientot') {
+                        alertes.push(`⚠️ ${p.nom} - ${peremption.texte}`);
+                    }
+                }
+            });
+            
+            let alertesHtml = '';
             if (alertes.length === 0) {
-                alertesHtml += '<p>Aucune alerte</p>';
+                alertesHtml = '<p style="color: #27ae60;">✅ Aucune alerte</p>';
             } else {
-                alertes.forEach(p => {
-                    alertesHtml += `<p style="color:#e74c3c;">⚠️ ${p.nom} - Stock: ${p.stock}</p>`;
+                alertes.forEach(a => {
+                    alertesHtml += `<div class="alerte-item ${a.includes('EXPIRÉ') ? 'danger' : ''}">${a}</div>`;
                 });
             }
             document.getElementById('alertesList').innerHTML = alertesHtml;
         }
 
         // ========== PRODUITS ==========
-        function verifPeremption(date) {
-            if (!date) return '';
-            let d = new Date(date);
-            let now = new Date();
-            let diff = (d - now) / (1000 * 60 * 60 * 24);
-            if (diff < 0) return 'expire';
-            if (diff < 30) return 'expire-bientot';
-            return '';
-        }
-
-        function updateProduitsList() {
+        function updateProduitsGrid() {
+            let grid = document.getElementById('produitsGrid');
             let html = '';
+            
+            if (produits.length === 0) {
+                grid.innerHTML = '<p style="text-align:center; padding:50px; color:#7f8c8d;">Aucun produit. Commencez par en ajouter !</p>';
+                return;
+            }
+            
             produits.forEach(p => {
-                let perem = verifPeremption(p.datePeremption);
-                html += `<tr>
-                    <td>${p.nom}</td>
-                    <td>${p.prix} FCFA</td>
-                    <td class="${p.stock < p.seuil ? 'stock-faible' : ''}">${p.stock}</td>
-                    <td class="${perem}">${p.datePeremption || 'Non définie'}</td>
-                    <td>
-                        <button onclick="editProduit(${p.id})">✏️</button>
-                        <button onclick="deleteProduit(${p.id})">🗑️</button>
-                    </td>
-                </tr>`;
+                let stockClass = p.stock < p.seuil ? 'stock-faible' : 'stock-normal';
+                let peremption = verifierPeremption(p.peremption);
+                
+                html += `
+                    <div class="produit-card">
+                        <div class="produit-info">
+                            <h4>${p.nom}</h4>
+                            <p>💰 Prix: ${p.prix.toLocaleString()} FCFA</p>
+                            <p class="${stockClass}">📦 Stock: ${p.stock} (seuil: ${p.seuil})</p>
+                            <p class="${peremption.classe}">📅 Péremption: ${peremption.texte}</p>
+                        </div>
+                        <div class="produit-actions">
+                            <button class="action-btn btn-edit" onclick="editProduct(${p.id})">✏️ Modifier</button>
+                            <button class="action-btn btn-delete" onclick="deleteProduct(${p.id})">🗑️ Supprimer</button>
+                        </div>
+                    </div>
+                `;
             });
-            document.getElementById('produitsTable').innerHTML = html;
+            
+            grid.innerHTML = html;
         }
 
-        function showAddProduct() {
+        function showAddProductModal() {
             document.getElementById('modalTitle').innerHTML = 'Ajouter un produit';
             document.getElementById('productId').value = '';
-            document.getElementById('prodNom').value = '';
-            document.getElementById('prodPrix').value = '';
-            document.getElementById('prodStock').value = '';
-            document.getElementById('prodDatePeremption').value = '';
+            document.getElementById('productNom').value = '';
+            document.getElementById('productPrix').value = '';
+            document.getElementById('productStock').value = '';
+            document.getElementById('productPeremption').value = '';
+            document.getElementById('productSeuil').value = '5';
             document.getElementById('productModal').classList.add('active');
         }
 
-        function editProduit(id) {
-            let p = produits.find(x => x.id === id);
+        function editProduct(id) {
+            let p = produits.find(p => p.id === id);
             document.getElementById('modalTitle').innerHTML = 'Modifier le produit';
             document.getElementById('productId').value = p.id;
-            document.getElementById('prodNom').value = p.nom;
-            document.getElementById('prodPrix').value = p.prix;
-            document.getElementById('prodStock').value = p.stock;
-            document.getElementById('prodDatePeremption').value = p.datePeremption || '';
+            document.getElementById('productNom').value = p.nom;
+            document.getElementById('productPrix').value = p.prix;
+            document.getElementById('productStock').value = p.stock;
+            document.getElementById('productPeremption').value = p.peremption || '';
+            document.getElementById('productSeuil').value = p.seuil;
             document.getElementById('productModal').classList.add('active');
         }
 
-        function sauvegarderProduit() {
+        function saveProduct() {
             let id = document.getElementById('productId').value;
-            let nom = document.getElementById('prodNom').value;
-            let prix = document.getElementById('prodPrix').value;
-            let stock = document.getElementById('prodStock').value;
-            let date = document.getElementById('prodDatePeremption').value;
+            let nom = document.getElementById('productNom').value.trim();
+            let prix = parseFloat(document.getElementById('productPrix').value);
+            let stock = parseInt(document.getElementById('productStock').value);
+            let peremption = document.getElementById('productPeremption').value;
+            let seuil = parseInt(document.getElementById('productSeuil').value);
             
-            if (!nom || !prix || stock === '') {
-                alert('Remplissez les champs obligatoires');
+            if (!nom || !prix || isNaN(stock)) {
+                alert('Veuillez remplir tous les champs obligatoires');
                 return;
             }
             
             if (id) {
-                let p = produits.find(x => x.id == id);
+                let p = produits.find(p => p.id == id);
                 p.nom = nom;
-                p.prix = parseFloat(prix);
-                p.stock = parseInt(stock);
-                p.datePeremption = date;
+                p.prix = prix;
+                p.stock = stock;
+                p.peremption = peremption;
+                p.seuil = seuil;
             } else {
+                let newId = produits.length > 0 ? Math.max(...produits.map(p => p.id)) + 1 : 1;
                 produits.push({
-                    id: produits.length + 1,
+                    id: newId,
                     nom: nom,
-                    prix: parseFloat(prix),
-                    stock: parseInt(stock),
-                    seuil: 5,
-                    datePeremption: date
+                    prix: prix,
+                    stock: stock,
+                    peremption: peremption,
+                    seuil: seuil
                 });
             }
-            saveData();
+            
+            sauvegarderDonnees();
             closeModal();
-            updateProduitsList();
+            updateProduitsGrid();
             updateProduitsDisponibles();
             updateDashboard();
         }
 
-        function deleteProduit(id) {
-            if (confirm('Supprimer ce produit ?')) {
-                produits = produits.filter(x => x.id !== id);
-                saveData();
-                updateProduitsList();
+        function deleteProduct(id) {
+            if (confirm('Voulez-vous vraiment supprimer ce produit ?')) {
+                produits = produits.filter(p => p.id !== id);
+                sauvegarderDonnees();
+                updateProduitsGrid();
                 updateProduitsDisponibles();
                 updateDashboard();
             }
@@ -705,122 +1574,221 @@
 
         // ========== VENTES ==========
         function updateProduitsDisponibles() {
-            let search = document.getElementById('searchProduit')?.value.toLowerCase() || '';
-            let dispo = produits.filter(p => p.stock > 0 && verifPeremption(p.datePeremption) !== 'expire');
-            if (search) dispo = dispo.filter(p => p.nom.toLowerCase().includes(search));
+            let search = document.getElementById('searchProduit').value.toLowerCase();
+            let produitsFiltres = produits.filter(p => {
+                // Exclure les produits expirés
+                if (p.peremption) {
+                    let peremption = verifierPeremption(p.peremption);
+                    if (peremption.classe === 'expire') return false;
+                }
+                return p.stock > 0;
+            });
+            
+            if (search) {
+                produitsFiltres = produitsFiltres.filter(p => p.nom.toLowerCase().includes(search));
+            }
             
             let html = '';
-            dispo.forEach(p => {
+            produitsFiltres.forEach(p => {
                 html += `
                     <div class="produit-item" onclick="ajouterAuPanier(${p.id})">
-                        <span>${p.nom} (${p.stock})</span>
-                        <span class="produit-prix">${p.prix} FCFA</span>
+                        <div class="produit-info">
+                            <h4>${p.nom}</h4>
+                            <p>Stock: ${p.stock}</p>
+                        </div>
+                        <div class="produit-prix">${p.prix.toLocaleString()} FCFA</div>
                     </div>
                 `;
             });
-            document.getElementById('produitsDisponibles').innerHTML = html || '<p>Aucun produit disponible</p>';
+            
+            document.getElementById('produitsListe').innerHTML = html || '<p style="text-align:center; padding:20px;">Aucun produit disponible</p>';
         }
 
         function ajouterAuPanier(id) {
-            let p = produits.find(x => x.id === id);
-            let item = panier.find(x => x.id === id);
+            let produit = produits.find(p => p.id === id);
+            let item = panier.find(p => p.id === id);
+            
             if (item) {
-                if (item.q < p.stock) item.q++;
-                else return;
+                if (item.quantite < produit.stock) {
+                    item.quantite++;
+                } else {
+                    alert('Stock insuffisant');
+                    return;
+                }
             } else {
-                panier.push({id: id, nom: p.nom, prix: p.prix, q: 1});
+                panier.push({
+                    id: produit.id,
+                    nom: produit.nom,
+                    prix: produit.prix,
+                    quantite: 1
+                });
             }
+            
             updatePanier();
         }
 
         function updatePanier() {
             let html = '';
             let total = 0;
+            
             panier.forEach(item => {
-                total += item.prix * item.q;
+                total += item.prix * item.quantite;
                 html += `
                     <div class="panier-item">
-                        <span>${item.nom} x${item.q}</span>
-                        <span>${item.prix * item.q} FCFA
-                            <button onclick="changerQ(${item.id}, -1)">-</button>
-                            <button onclick="changerQ(${item.id}, 1)">+</button>
-                            <button onclick="supprimerDuPanier(${item.id})">×</button>
-                        </span>
-                    </div>`;
+                        <div class="panier-item-info">
+                            <h4>${item.nom}</h4>
+                            <p>${item.prix.toLocaleString()} FCFA x ${item.quantite}</p>
+                        </div>
+                        <div class="panier-item-actions">
+                            <button class="btn-quantite" onclick="changerQuantite(${item.id}, -1)">-</button>
+                            <span>${item.quantite}</span>
+                            <button class="btn-quantite" onclick="changerQuantite(${item.id}, 1)">+</button>
+                            <button class="btn-remove" onclick="retirerDuPanier(${item.id})">×</button>
+                        </div>
+                    </div>
+                `;
             });
-            document.getElementById('panierItems').innerHTML = html || '<p>Panier vide</p>';
-            document.getElementById('panierCount').innerHTML = panier.length;
-            document.getElementById('totalFinal').innerHTML = total;
+            
+            document.getElementById('panierItems').innerHTML = html || '<p style="text-align:center; padding:20px;">Panier vide</p>';
+            document.getElementById('panierCount').innerHTML = `(${panier.length})`;
+            document.getElementById('panierTotal').innerHTML = total.toLocaleString();
         }
 
-        function changerQ(id, delta) {
-            let item = panier.find(x => x.id === id);
-            let p = produits.find(x => x.id === id);
-            item.q += delta;
-            if (item.q < 1 || item.q > p.stock) {
-                if (item.q < 1) panier = panier.filter(x => x.id !== id);
-                else item.q -= delta;
+        function changerQuantite(id, delta) {
+            let item = panier.find(p => p.id === id);
+            let produit = produits.find(p => p.id === id);
+            
+            item.quantite += delta;
+            
+            if (item.quantite < 1) {
+                panier = panier.filter(p => p.id !== id);
+            } else if (item.quantite > produit.stock) {
+                item.quantite -= delta;
+                alert('Stock insuffisant');
             }
+            
             updatePanier();
         }
 
-        function supprimerDuPanier(id) {
-            panier = panier.filter(x => x.id !== id);
+        function retirerDuPanier(id) {
+            panier = panier.filter(p => p.id !== id);
             updatePanier();
         }
 
-        function viderPanier() { 
-            panier = []; 
-            updatePanier(); 
+        function viderPanier() {
+            if (panier.length > 0 && confirm('Vider le panier ?')) {
+                panier = [];
+                updatePanier();
+            }
+        }
+
+        function confirmerVente() {
+            if (panier.length === 0) {
+                alert('Le panier est vide');
+                return;
+            }
+            
+            let details = '';
+            let total = 0;
+            
+            panier.forEach(item => {
+                total += item.prix * item.quantite;
+                details += `
+                    <div style="display: flex; justify-content: space-between; margin: 8px 0;">
+                        <span>${item.nom} x${item.quantite}</span>
+                        <span>${(item.prix * item.quantite).toLocaleString()} FCFA</span>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('confirmDetails').innerHTML = details;
+            document.getElementById('confirmTotal').innerHTML = total.toLocaleString();
+            document.getElementById('confirmVenteModal').classList.add('active');
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmVenteModal').classList.remove('active');
         }
 
         function finaliserVente() {
-            if (panier.length === 0) return;
-            
-            let total = panier.reduce((s, i) => s + i.prix * i.q, 0);
+            let total = panier.reduce((sum, item) => sum + (item.prix * item.quantite), 0);
             
             panier.forEach(item => {
-                let p = produits.find(x => x.id === item.id);
-                p.stock -= item.q;
+                let produit = produits.find(p => p.id === item.id);
+                produit.stock -= item.quantite;
             });
             
-            let vente = {
+            ventes.push({
                 date: new Date().toISOString(),
-                total: total,
-                items: [...panier]
-            };
+                items: [...panier],
+                total: total
+            });
             
-            ventes.push(vente);
-            saveData();
+            sauvegarderDonnees();
             
-            // Afficher le reçu
-            afficherRecu(vente);
+            afficherRecu();
             
             panier = [];
+            closeConfirmModal();
             updatePanier();
-            updateDashboard();
-            updateProduitsList();
             updateProduitsDisponibles();
+            updateDashboard();
+            updateProduitsGrid();
             updateHistorique();
         }
 
         // ========== REÇU ==========
-        function afficherRecu(vente) {
-            let html = '<div style="text-align:left;">';
-            html += `<p><strong>Date:</strong> ${new Date(vente.date).toLocaleString()}</p>`;
-            html += `<p><strong>Caissier:</strong> ${currentUser.name}</p>`;
-            html += '<hr>';
+        function afficherRecu() {
+            let now = new Date();
             
-            vente.items.forEach(item => {
-                html += `<p>${item.nom} x${item.q} = ${item.prix * item.q} FCFA</p>`;
+            let infos = `
+                <p><strong>Date:</strong> ${now.toLocaleDateString()}</p>
+                <p><strong>Heure:</strong> ${now.toLocaleTimeString()}</p>
+                <p><strong>Caissier:</strong> ${currentUser.username}</p>
+            `;
+            document.getElementById('recuInfos').innerHTML = infos;
+            
+            let details = '';
+            panier.forEach(item => {
+                details += `
+                    <div class="recu-item">
+                        <span>${item.nom} x${item.quantite}</span>
+                        <span>${(item.prix * item.quantite).toLocaleString()} FCFA</span>
+                    </div>
+                `;
             });
+            document.getElementById('recuDetails').innerHTML = details;
             
-            html += '<hr>';
-            html += `<h3>Total: ${vente.total} FCFA</h3>`;
-            html += '</div>';
+            let total = panier.reduce((sum, item) => sum + (item.prix * item.quantite), 0);
+            document.getElementById('recuTotal').innerHTML = `Total: ${total.toLocaleString()} FCFA`;
             
-            document.getElementById('recuContent').innerHTML = html;
             document.getElementById('recuModal').classList.add('active');
+        }
+
+        function imprimerRecu() {
+            let recuContent = document.querySelector('.recu-container').cloneNode(true);
+            let printWindow = window.open('', '_blank');
+            
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>Reçu de vente</title>
+                    <style>
+                        body { font-family: Arial; padding: 20px; }
+                        .recu-container { max-width: 400px; margin: 0 auto; }
+                        .recu-header { text-align: center; border-bottom: 2px solid #27ae60; }
+                        .recu-infos { background: #f8f9fa; padding: 15px; }
+                        .recu-item { display: flex; justify-content: space-between; padding: 10px 0; }
+                        .recu-total { font-size: 20px; font-weight: bold; color: #27ae60; text-align: right; }
+                        .recu-message { text-align: center; padding: 15px; }
+                    </style>
+                </head>
+                <body>${recuContent.outerHTML}</body>
+                </html>
+            `);
+            
+            printWindow.document.close();
+            printWindow.print();
         }
 
         function closeRecu() {
@@ -830,19 +1798,51 @@
         // ========== HISTORIQUE ==========
         function updateHistorique() {
             let html = '';
-            ventes.slice().reverse().forEach(v => {
-                html += `<tr>
-                    <td>${new Date(v.date).toLocaleString()}</td>
-                    <td>${v.total} FCFA</td>
-                    <td>${v.items.length}</td>
-                </tr>`;
+            ventes.slice().reverse().forEach((v, index) => {
+                let date = new Date(v.date);
+                html += `
+                    <tr>
+                        <td>${date.toLocaleDateString()}</td>
+                        <td>${date.toLocaleTimeString()}</td>
+                        <td>${v.total.toLocaleString()} FCFA</td>
+                        <td>${v.items.length} article(s)</td>
+                        <td>
+                            <button class="btn-view" onclick="voirDetailsVente(${ventes.length - 1 - index})">👁️ Voir</button>
+                        </td>
+                    </tr>
+                `;
             });
-            document.getElementById('historiqueTable').innerHTML = html || '<tr><td colspan="3">Aucune vente</td></tr>';
+            document.getElementById('historiqueTable').innerHTML = html || '<tr><td colspan="5" style="text-align:center;">Aucune vente</td></tr>';
         }
 
-        // ========== RECHERCHE ==========
-        document.getElementById('searchProduit')?.addEventListener('keyup', updateProduitsDisponibles);
+        function voirDetailsVente(index) {
+            let vente = ventes[index];
+            let now = new Date(vente.date);
+            
+            let infos = `
+                <p><strong>Date:</strong> ${now.toLocaleDateString()}</p>
+                <p><strong>Heure:</strong> ${now.toLocaleTimeString()}</p>
+            `;
+            document.getElementById('recuInfos').innerHTML = infos;
+            
+            let details = '';
+            vente.items.forEach(item => {
+                details += `
+                    <div class="recu-item">
+                        <span>${item.nom} x${item.quantite}</span>
+                        <span>${(item.prix * item.quantite).toLocaleString()} FCFA</span>
+                    </div>
+                `;
+            });
+            document.getElementById('recuDetails').innerHTML = details;
+            document.getElementById('recuTotal').innerHTML = `Total: ${vente.total.toLocaleString()} FCFA`;
+            document.getElementById('recuModal').classList.add('active');
+        }
+
+        // ========== RECHERCHE EN TEMPS RÉEL ==========
+        document.getElementById('searchProduit').addEventListener('keyup', function() {
+            updateProduitsDisponibles();
+        });
     </script>
 </body>
 </html>
-```
