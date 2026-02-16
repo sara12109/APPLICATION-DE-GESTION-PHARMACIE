@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - PHARMA STOCK</title>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <style>
+        * { font-family: Arial, sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #f5f6fa; padding: 30px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { color: #2c3e50; margin-bottom: 30px; }
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .stat-value { font-size: 28px; font-weight: bold; color: #27ae60; }
+        table { width: 100%; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        th { background: #27ae60; color: white; padding: 15px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #ecf0f1; }
+        .footer { margin-top: 30px; text-align: center; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👑 Administration - Utilisateurs inscrits</h1>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Total utilisateurs</h3>
+                <div class="stat-value" id="totalUsers">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Dernière inscription</h3>
+                <div class="stat-value" id="lastUser">-</div>
+            </div>
+            <div class="stat-card">
+                <h3>Pharmacies</h3>
+                <div class="stat-value" id="totalPharmacies">0</div>
+            </div>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom d'utilisateur</th>
+                    <th>Email</th>
+                    <th>Nom de la pharmacie</th>
+                    <th>Date d'inscription</th>
+                </tr>
+            </thead>
+            <tbody id="usersTable"></tbody>
+        </table>
+        
+        <div class="footer">
+            Développé par ADAMOU SARA ABDOURAHAMANE | 📞 88902505
+        </div>
+    </div>
+
+    <script>
+        // Configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAjsdsnH2qdd1tYw8sU_ibdszwae2Ra0w",
+            authDomain: "pharma-stock-7363d.firebaseapp.com",
+            projectId: "pharma-stock-7363d",
+            storageBucket: "pharma-stock-7363d.firebasestorage.googleapis.com",
+            messagingSenderId: "884357135995",
+            appId: "1:884357135995:web:4d88d8899a3fc76f5a8cde"
+        };
+
+        // Initialiser Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Fonction pour charger tous les utilisateurs
+        function loadUsers() {
+            db.collection('users').get()
+                .then((snapshot) => {
+                    let html = '';
+                    let total = 0;
+                    let lastDate = null;
+                    
+                    snapshot.forEach((doc) => {
+                        const user = doc.data();
+                        total++;
+                        
+                        // Trouver la dernière date d'inscription
+                        if (!lastDate || new Date(user.dateCreation) > new Date(lastDate)) {
+                            lastDate = user.dateCreation;
+                        }
+                        
+                        // Ajouter une ligne au tableau
+                        html += `<tr>
+                            <td><strong>${user.username || 'Non défini'}</strong></td>
+                            <td>${user.email || 'Non défini'}</td>
+                            <td>${user.nomPharmacie || 'Non défini'}</td>
+                            <td>${new Date(user.dateCreation).toLocaleString()}</td>
+                        </tr>`;
+                    });
+                    
+                    // Mettre à jour le tableau
+                    document.getElementById('usersTable').innerHTML = html || '<tr><td colspan="4" style="text-align:center;">Aucun utilisateur inscrit</td></tr>';
+                    
+                    // Mettre à jour les statistiques
+                    document.getElementById('totalUsers').innerHTML = total;
+                    document.getElementById('lastUser').innerHTML = lastDate ? new Date(lastDate).toLocaleDateString() : '-';
+                    document.getElementById('totalPharmacies').innerHTML = total;
+                })
+                .catch((error) => {
+                    console.error('Erreur:', error);
+                    document.getElementById('usersTable').innerHTML = '<tr><td colspan="4" style="text-align:center; color:#e74c3c;">Erreur de chargement</td></tr>';
+                });
+        }
+
+        // Charger les utilisateurs au démarrage
+        loadUsers();
+        
+        // Rafraîchir toutes les 30 secondes
+        setInterval(loadUsers, 30000);
+    </script>
+</body>
+</html>
